@@ -1,0 +1,15 @@
+#map {
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+* {
+    color: black;
+}
+
+.leaflet-marker-pane>* {
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}

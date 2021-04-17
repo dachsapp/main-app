@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#w-text {
+    display: block;
+    margin: 3vh auto;
+    height: 6vh;
+}
+
+#body-div {
+    position: fixed;
+    bottom: 10vh;
+    width: 100vw;
+    height: 80%;
+
+
+    display: flex;
+
+}
+
+
+#btn-div {
+    flex: 2;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+    button {
+        margin: 1vh 0;
+    }
+}
+
+.btn {
+    padding: 10px;
+    left: 10vw;
+    width: 50vw;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background-color: gray;
+
+    p {
+        color: white;
+        font-family: 'Bowlby One SC', cursive;
+        font-size: 5vw;
+    }
+
+    transition: background-color ease 0.3s;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #4D4D4D;
+    }
+
+}
+
+#daniel-div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    img {
+        min-height: 50vh;
+        max-height: 60vh;
+    }
+}
+
+
+footer {
+    background-color: rgb(56, 56, 56);
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+        color: white;
+        font-size: 5vh;
+        font-family: cursive, Arial, Helvetica, sans-serif;
+
+    }
+}
+
+
+@media (orientation: landscape) {
+    #btn-div button {
+        font-size: 25pt;
+    }
+}

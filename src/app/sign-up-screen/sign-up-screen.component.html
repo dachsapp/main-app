@@ -1,0 +1,51 @@
+<div id="main-div" (click)="focusBody()">
+  <div id="content-div">
+    <form id="content-form">
+      <div [class]="emailClassList">
+        <input
+          #emailInput
+          (input)="emailInputChanged(emailInput.value)"
+          id="email-input"
+          type="text"
+          placeholder="Email"
+        />
+      </div>
+      <div id="password-field" [class]="passClassList">
+        <input
+          #passwordInput
+          (input)="passwordInputChanged(passwordInput.value)"
+          id="password-input"
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="passwort"
+          [value]="passwordFieldValue"
+        />
+        <img
+          id="generate-password-IMG"
+          class="icon-img"
+          src="assets/pics/generate-random-password.svg"
+          (click)="generateRandomPassword()"
+          (contextmenu)="showFurtherGRPOptions($event)"
+        />
+        <img
+          class="icon-img"
+          (click)="toggleShowPassword()"
+          src="assets/pics/eye.png"
+          alt="eye"
+        />
+      </div>
+      <div id="remember-me">
+        <input type="checkbox" />
+        <p>Lass mich eingeloggt!</p>
+      </div>
+      <div [class]="'button-div' + ' ' + buttonDisabled" (click)="signIn()">
+        <a class="button-anchor">Registrieren / einloggen</a>
+      </div>
+    </form>
+  </div>
+</div>
+<app-menu-generate-password
+  [topLeftStyling]="positionOfFurtherGRPOptions"
+  [visiblityClass]="visiblityClass"
+  (enteredLength)="updatePasswordLength($event)"
+  (allowedLetters)="setAllowedChars($event)"
+></app-menu-generate-password>

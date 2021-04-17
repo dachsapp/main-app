@@ -1,0 +1,29 @@
+button {
+    z-index: 100;
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 2vh;
+    padding: 0.5vh;
+    border: none;
+    outline: none;
+
+    background-color: gray;
+    color: white;
+
+    &:hover {
+        background-color: #4D4D4D;
+        cursor: pointer;
+    }
+}
+
+.shown {
+    visibility: visible;
+    opacity: 1;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}

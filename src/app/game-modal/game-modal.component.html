@@ -1,0 +1,20 @@
+<div id="information" [class]="styleOfPlayer">
+  <img
+    (click)="clicked()"
+    id="player"
+    src="assets/main-player.png"
+    alt="main-player"
+  />
+  <div id="info">
+    <div id="shop">
+      <h1>gesammelte Gegenstände</h1>
+
+      <div id="shopItems">
+        <div class="shopItem" *ngFor="let shopItem of itemsArray">
+          <img [src]="shopItem.img" alt="shopitem" />
+          <p>{{ shopItem.text }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

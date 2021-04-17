@@ -1,0 +1,12 @@
+<div
+  id="map"
+  leaflet
+  [leafletOptions]="options"
+  (leafletMapReady)="onMapReady($event)"
+></div>
+
+<app-game-modal></app-game-modal>
+
+<app-coins-modal [coinCount]="coinCount"></app-coins-modal>
+
+<app-install-app></app-install-app>
