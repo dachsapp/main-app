@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,CAAC;EACD,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,OAAO,EAAE,CAAC;EACV,cAAc,EAAE,IAAI;CACvB;;AAED,AAAA,CAAC,CAAC;EACE,KAAK,EAAE,KAAK;CACf;;AAED,AAAA,oBAAoB,GAAC,CAAC,CAAC;EACnB,kBAAkB,EAAE,eAAe;EACnC,UAAU,EAAE,eAAe;CAC9B",
+    "sources": [
+        "mapscreen.component.scss"
+    ],
+    "names": [],
+    "file": "mapscreen.component.css"
+}

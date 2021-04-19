@@ -1,0 +1,254 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Lexend&display=swap");
+#main-div {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#main-div #content-div {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#main-div #content-div #content-form {
+  width: 80%;
+  height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#main-div #content-div #content-form .divOverInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+#main-div #content-div #content-form .divOverInput input {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+}
+
+#main-div #content-div #content-form input {
+  text-align: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 110%;
+  padding: 20px 25%;
+  background-color: #5d5d5d;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  font-family: "Lexend", Arial, Helvetica, sans-serif;
+  -webkit-transition: -webkit-transform ease-in-out 0.2s;
+  transition: -webkit-transform ease-in-out 0.2s;
+  transition: transform ease-in-out 0.2s;
+  transition: transform ease-in-out 0.2s, -webkit-transform ease-in-out 0.2s;
+  -webkit-transition: background-color ease 0.2s;
+  transition: background-color ease 0.2s;
+  -webkit-transition: color ease 0.4s;
+  transition: color ease 0.4s;
+}
+
+#main-div #content-div #content-form input:hover {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+  background-color: #5f5f5f;
+  cursor: pointer;
+}
+
+#main-div #content-div #content-form input:focus {
+  background-color: #999999;
+  color: #1d2630;
+  cursor: text;
+}
+
+#main-div #content-div #content-form #password-field #generate-password-IMG {
+  position: absolute;
+  width: 35px;
+  left: 5px;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform ease-in-out 0.2s;
+  transition: -webkit-transform ease-in-out 0.2s;
+  transition: transform ease-in-out 0.2s;
+  transition: transform ease-in-out 0.2s, -webkit-transform ease-in-out 0.2s;
+}
+
+#main-div #content-div #content-form #password-field #generate-password-IMG:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+#main-div #content-div #content-form #password-field img {
+  position: absolute;
+  right: 5px;
+  width: 40px;
+  -webkit-transition: -webkit-transform ease-in-out 0.2s;
+  transition: -webkit-transform ease-in-out 0.2s;
+  transition: transform ease-in-out 0.2s;
+  transition: transform ease-in-out 0.2s, -webkit-transform ease-in-out 0.2s;
+  cursor: pointer;
+}
+
+#main-div #content-div #content-form #password-field img:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+#main-div #content-div #content-form #remember-me {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#main-div #content-div #content-form #remember-me input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+#main-div #content-div #content-form #remember-me input:focus {
+  cursor: pointer;
+}
+
+#main-div #content-div #content-form #remember-me p {
+  -webkit-box-flex: 10;
+      -ms-flex: 10;
+          flex: 10;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.4rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.warning input {
+  background-color: #c72828 !important;
+  color: white !important;
+}
+
+.warning::after {
+  color: #ff6d6d;
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 110%;
+}
+
+.illigalEmailChars::after {
+  content: "Sie haben unerlaubte Zeichen verwentet";
+}
+
+.moreThanOneAt::after {
+  content: "Sie haben mehr als ein '@'-Zeichen verwentet";
+}
+
+.forgotDOT::after {
+  content: "Eine Email-Adresse muss '.' enthalten!";
+}
+
+.forgotAT::after {
+  content: "Eine Email-Adresse muss '@' enthalten!";
+}
+
+.missingWords::after {
+  content: "Du hast was bei der Email-Adresse vergessen!";
+}
+
+.missingEnding::after {
+  content: "Du hast die Endung bei der Email-Adresse vergessen!";
+}
+
+.tooShort::after {
+  content: "Das Passwort ist kürzer als 6 Zeichen!";
+}
+
+.tooLong::after {
+  content: "Das Passwort ist länger als 32 Zeichen!";
+}
+
+.illigalChar::after {
+  content: "Sie haben unerlaubte Zeichen verwendet!";
+}
+
+.disabled {
+  -webkit-filter: brightness(1.6);
+          filter: brightness(1.6);
+  pointer-events: none;
+  cursor: default;
+}
+
+@media only screen and (max-width: 850px) {
+  #content-form {
+    width: 80% !important;
+  }
+  #content-form input {
+    border-radius: 20px;
+  }
+}
+
+@media only screen and (max-height: 850px) {
+  #content-div {
+    height: 100%;
+  }
+  #content-div #content-form {
+    height: 100% !important;
+  }
+}
+/*# sourceMappingURL=sign-up-screen.component.css.map */

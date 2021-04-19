@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "geo-location-not-supported.component.scss"
+    ],
+    "names": [],
+    "file": "geo-location-not-supported.component.css"
+}

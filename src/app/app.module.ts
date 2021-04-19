@@ -18,6 +18,7 @@ import { InstallAppComponent } from './install-app/install-app.component';
 import { GeoLocationNotSupportedComponent } from './geo-location-not-supported/geo-location-not-supported.component';
 import { MenuGeneratePasswordComponent } from './menu-generate-password/menu-generate-password.component';
 import { SignUpScreenComponent } from './sign-up-screen/sign-up-screen.component';
+import { VerifyCodeComponent } from './verify-code/verify-code.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SignUpScreenComponent } from './sign-up-screen/sign-up-screen.component
     GeoLocationNotSupportedComponent,
     MenuGeneratePasswordComponent,
     SignUpScreenComponent,
+    VerifyCodeComponent,
   ],
   imports: [
     BrowserModule,

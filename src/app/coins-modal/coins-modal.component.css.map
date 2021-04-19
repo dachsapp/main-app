@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACP,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,GAAG;EACR,IAAI,EAAE,GAAG;EACT,OAAO,EAAE,GAAG;EACZ,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;CAUtB;;AAhBD,AAQI,UARM,CAQN,GAAG,CAAC;EACA,MAAM,EAAE,IAAI;CACf;;AAVL,AAYI,UAZM,CAYN,EAAE,CAAC;EACC,SAAS,EAAE,GAAG;EACd,WAAW,EAAE,4BAA4B;CAC5C",
+    "sources": [
+        "coins-modal.component.scss"
+    ],
+    "names": [],
+    "file": "coins-modal.component.css"
+}

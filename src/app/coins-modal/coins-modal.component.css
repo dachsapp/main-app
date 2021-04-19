@@ -1,0 +1,22 @@
+#coins-div {
+  position: absolute;
+  top: 2vw;
+  left: 2vw;
+  z-index: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#coins-div img {
+  height: 12vh;
+}
+
+#coins-div h1 {
+  font-size: 5vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/*# sourceMappingURL=coins-modal.component.css.map */

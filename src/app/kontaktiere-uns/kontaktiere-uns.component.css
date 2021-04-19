@@ -1,0 +1,21 @@
+.jumbotron {
+  background-color: #CACACA;
+  color: #383838;
+  padding: 2vw;
+  margin: 2vw;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 20px #915c5c;
+          box-shadow: 0 0 20px #915c5c;
+}
+
+.jumbotron h1 {
+  font-size: 2em;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.jumbotron p {
+  font-size: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/*# sourceMappingURL=kontaktiere-uns.component.css.map */
