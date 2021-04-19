@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const express = require("express");
 const app = express();
 
@@ -24,7 +22,7 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "web.dachs.app@gmail.com",
-    pass: process.env.ROOTPASS,
+    pass: "wt}-S4=+cA6a/H#i",
   },
 });
 
