@@ -5,7 +5,7 @@ const https = require("https");
 const path = require("path");
 const fs = require("fs");
 
-const port = 3443;
+const port = 80;
 const hostname = "0.0.0.0";
 
 app.use("/", express.static("dist/leaflet-testing-in-angular"));
