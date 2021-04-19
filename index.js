@@ -1,11 +1,24 @@
 const express = require("express");
 const app = express();
+const https = require("https");
 
-const port = 3000;
+const path = require("path");
+const fs = require("fs");
+
+const port = 3443;
 const hostname = "0.0.0.0";
 
 app.use("/", express.static("dist/leaflet-testing-in-angular"));
-app.listen(port, hostname, () => {
+
+const sslServer = https.createServer(
+  {
+    key: fs.readFileSync(path.join(__dirname, "certificate", "key.pem")),
+    cert: fs.readFileSync(path.join(__dirname, "certificate", "cert.pem")),
+  },
+  app
+);
+
+sslServer.listen(port, hostname, () => {
   console.log(`Listening on http://${hostname}:${port}`);
 });
 
