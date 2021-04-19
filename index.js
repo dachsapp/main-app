@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-app.use("/", express.static("../dist/leaflet-testing-in-angular"));
+app.use("/", express.static("dist/leaflet-testing-in-angular"));
 app.listen(3000, () => {
   console.log("listening on port 3000");
 });
