@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 
+const port = 3000;
+const hostname = "0.0.0.0";
+
 app.use("/", express.static("dist/leaflet-testing-in-angular"));
-app.listen(3000, "0.0.0.0", () => {
-  console.log("listening on port 3000");
+app.listen(port, hostname, () => {
+  console.log(`Listening on http://${hostname}:${port}`);
 });
 
 const Datastore = require("nedb");
