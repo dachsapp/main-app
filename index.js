@@ -56,6 +56,6 @@ const sendMail = () => {
     });
 };
 
-app.get("/sendMail", () => {
+app.get("/verify-code", () => {
   verifyCode;
 });

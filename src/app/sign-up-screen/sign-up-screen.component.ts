@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up-screen',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./sign-up-screen.component.scss'],
 })
 export class SignUpScreenComponent {
+  constructor(private router: Router) {}
+
   email = '';
   pass = '';
 
@@ -261,6 +264,7 @@ export class SignUpScreenComponent {
     this.lengthOfPassword = $event;
   };
 
-  //sign in handeler
-  signIn = () => {};
+  handleRegistration = () => {
+    this.router.navigate(['/verify-code']);
+  };
 }

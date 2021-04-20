@@ -37,7 +37,10 @@
         <input type="checkbox" />
         <p>Lass mich eingeloggt!</p>
       </div>
-      <div [class]="'button-div' + ' ' + buttonDisabled" (click)="signIn()">
+      <div
+        [class]="'button-div' + ' ' + buttonDisabled"
+        (click)="handleRegistration()"
+      >
         <a class="button-anchor">Registrieren / einloggen</a>
       </div>
     </form>
