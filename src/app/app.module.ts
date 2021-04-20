@@ -19,6 +19,7 @@ import { GeoLocationNotSupportedComponent } from './geo-location-not-supported/g
 import { MenuGeneratePasswordComponent } from './menu-generate-password/menu-generate-password.component';
 import { SignUpScreenComponent } from './sign-up-screen/sign-up-screen.component';
 import { VerifyCodeComponent } from './verify-code/verify-code.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { VerifyCodeComponent } from './verify-code/verify-code.component';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    HttpClientModule,
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],

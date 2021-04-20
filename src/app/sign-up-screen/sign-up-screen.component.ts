@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppServiceService } from '../app-service.service';
 
 @Component({
   selector: 'app-sign-up-screen',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up-screen.component.scss'],
 })
 export class SignUpScreenComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private service: AppServiceService) {}
 
   email = '';
   pass = '';
@@ -264,7 +265,12 @@ export class SignUpScreenComponent {
     this.lengthOfPassword = $event;
   };
 
+  // handle registration
   handleRegistration = () => {
+    this.service.sendMail(this.email).subscribe(
+      (res) => console.log('Got respond: ', res),
+      (err) => console.error('Got error: ', err)
+    );
     this.router.navigate(['/verify-code']);
   };
 }

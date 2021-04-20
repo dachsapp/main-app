@@ -1,10 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 const port = 3443;
 const hostname = "0.0.0.0";
 
-app.use("/", express.static("public"));
+app.use(cors());
 
 app.listen(port, hostname, () => {
   console.log(`Listening on http://${hostname}:${port}`);
@@ -31,7 +32,6 @@ const transporter = nodemailer.createTransport({
 });
 
 let verifyCode;
-
 const sendMail = () => {
   verifyCode = getVerifyCode();
   transporter
@@ -56,6 +56,6 @@ const sendMail = () => {
     });
 };
 
-app.get("/verify-code", () => {
-  verifyCode;
+app.get("/sendMail", () => {
+  sendMail();
 });
