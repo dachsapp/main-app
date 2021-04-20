@@ -8,6 +8,7 @@ export class AppServiceService {
   constructor(private http: HttpClient) {}
 
   sendMail = (email: string) => {
+    console.log('Email in service: ' + email);
     return this.http.get(`/serverside/sendMail/${email}`);
   };
 }
