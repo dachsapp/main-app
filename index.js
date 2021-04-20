@@ -8,7 +8,7 @@ const fs = require("fs");
 const port = 3443;
 const hostname = "0.0.0.0";
 
-app.use("/", express.static("dist/leaflet-testing-in-angular"));
+app.use("/", express.static("public"));
 
 const sslServer = https.createServer(
   {
