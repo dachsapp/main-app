@@ -1,0 +1,8 @@
+{
+    "/serverside/*": {
+        "target": "http://0.0.0.0:3443",
+        "pathRewrite": {
+            "^/serverside": ""
+        }
+    }
+}
