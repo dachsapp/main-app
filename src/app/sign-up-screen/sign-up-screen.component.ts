@@ -267,10 +267,20 @@ export class SignUpScreenComponent {
 
   // handle registration
   handleRegistration = () => {
-    this.service.sendMail(this.email, this.pass).subscribe(
-      (res) => console.log('Got respond: ', res),
-      (err) => console.error('Got error: ', err)
-    );
-    this.router.navigate(['/verify-code']);
+    interface ResponseMessage {
+      message: string;
+    }
+
+    this.service.sendMail(this.email, this.pass).subscribe({
+      next: (data: ResponseMessage) => {
+        if (data.message === 'login-success') {
+          this.router.navigate(['/home']);
+        } else {
+          alert('PASSWORD IS WRONG!!!!!');
+        }
+      },
+      error: (err) => console.error(err),
+    });
+    // this.router.navigate(['/verify-code']);
   };
 }

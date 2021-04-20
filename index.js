@@ -58,7 +58,44 @@ const sendMail = (userEmail) => {
     });
 };
 
-app.post("/serverside/sendMail", (req) => {
-  console.log(req.body);
-  //   sendMail(req.params);
+const isEmailRegistered = (userEmail, callback) => {
+  //? get all users
+  db.find({}, (err, allUsers) => {
+    for (let user of allUsers) {
+      if (user._id.toLowerCase() === userEmail.toLowerCase()) {
+        callback(true);
+        return;
+      }
+    }
+    callback(false);
+  });
+};
+
+const isPasswordCorrect = (userData, callback) => {
+  db.find({}, (err, allUsers) => {
+    for (let user of allUsers) {
+      if (user._id.toLowerCase() === userData.email.toLowerCase()) {
+        callback(user.password === userData.password ? true : false);
+        return;
+      }
+    }
+    callback("The user isn't correct!!!");
+  });
+};
+
+app.post("/serverside/sendMail", async (req, res) => {
+  isEmailRegistered(req.body.email, (isRegistered) => {
+    if (isRegistered) {
+      isPasswordCorrect(req.body, (isCorrect) => {
+        if (isCorrect) {
+          //TODO, login, goto lobby
+          res.json({ message: "login-success" });
+          return;
+        }
+        res.json({ message: "login-nosuccess" });
+      });
+      return;
+    }
+    //TODO send Mail, verify code (code should be assigned to database with the user), register and login, goto lobby
+  });
 });
