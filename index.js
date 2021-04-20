@@ -4,6 +4,9 @@ const app = express();
 const port = 3443;
 const hostname = "0.0.0.0";
 
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+
 app.use("/", express.static("public"));
 
 app.listen(port, hostname, () => {
@@ -55,6 +58,7 @@ const sendMail = (userEmail) => {
     });
 };
 
-app.get("/serverside/sendMail/:email?", (req) => {
-  sendMail(req.params.email);
+app.post("/serverside/sendMail", (req) => {
+  console.log(req.body);
+  //   sendMail(req.params);
 });

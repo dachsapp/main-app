@@ -24,6 +24,7 @@
     "@angular/service-worker": "~11.0.5",
     "@asymmetrik/ngx-leaflet": "^8.1.0",
     "@pwabuilder/pwainstall": "^1.6.7",
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.6.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

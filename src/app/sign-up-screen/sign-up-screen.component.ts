@@ -267,8 +267,7 @@ export class SignUpScreenComponent {
 
   // handle registration
   handleRegistration = () => {
-    console.log('state at Component: this.email');
-    this.service.sendMail(this.email).subscribe(
+    this.service.sendMail(this.email, this.pass).subscribe(
       (res) => console.log('Got respond: ', res),
       (err) => console.error('Got error: ', err)
     );

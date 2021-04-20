@@ -7,8 +7,10 @@ import { Injectable } from '@angular/core';
 export class AppServiceService {
   constructor(private http: HttpClient) {}
 
-  sendMail = (email: string) => {
-    console.log('Email in service: ' + email);
-    return this.http.get(`/serverside/sendMail/${email}`);
+  sendMail = (email: string, password: string) => {
+    return this.http.post(`/serverside/sendMail/`, {
+      email: email,
+      password: password,
+    });
   };
 }
