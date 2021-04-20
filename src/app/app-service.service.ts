@@ -8,6 +8,6 @@ export class AppServiceService {
   constructor(private http: HttpClient) {}
 
   sendMail = (email: string) => {
-    return this.http.get('/serverside/sendMail');
+    return this.http.get(`/serverside/sendMail/${email}`);
   };
 }

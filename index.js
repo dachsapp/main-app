@@ -31,12 +31,12 @@ const transporter = nodemailer.createTransport({
 });
 
 let verifyCode;
-const sendMail = () => {
+const sendMail = (userEmail) => {
   verifyCode = getVerifyCode();
   transporter
     .sendMail({
       from: "web.dachs.app@gmail.com",
-      to: "alshoufy@dachsberg.at",
+      to: userEmail,
       subject: "Dachsapp Bestätigungscode",
       html: `
 	  <div>
@@ -48,13 +48,13 @@ const sendMail = () => {
 	  </div>`,
     })
     .then((res) => {
-      console.log(res);
+      console.log(`Got sended to ${userEmail} succefully`);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(`Couldn't send email to ${userEmail}`);
     });
 };
 
-app.get("/serverside/sendMail", () => {
-  sendMail();
+app.get("/serverside/sendMail/:email?", (req) => {
+  sendMail(req.params.email);
 });
