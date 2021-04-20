@@ -5,7 +5,7 @@ const app = express();
 const port = 3443;
 const hostname = "0.0.0.0";
 
-app.use(cors());
+app.use("/", express.static("public"));
 
 app.listen(port, hostname, () => {
   console.log(`Listening on http://${hostname}:${port}`);
@@ -56,6 +56,6 @@ const sendMail = () => {
     });
 };
 
-app.get("/sendMail", () => {
+app.get("/serverside/sendMail", () => {
   sendMail();
 });
