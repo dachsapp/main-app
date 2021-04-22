@@ -13,7 +13,21 @@ export class HomescreenComponent implements OnInit {
     this.route.navigate([routingLink]);
   };
 
+  email: string;
+
   ngOnInit() {
-    // this.service.isLoggedIn();
+    interface ResponseMessage {
+      message: string;
+    }
+
+    this.service.emailObservable.subscribe(
+      (emailObserved) => (this.email = emailObserved)
+    );
+    this.service
+      .isLoggedIn(this.email)
+      .toPromise()
+      .then((data: ResponseMessage) => {
+        if (data.message !== 'logged-in') this.route.navigate(['/signup']);
+      });
   }
 }

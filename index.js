@@ -112,8 +112,6 @@ app.post("/serverside/sendMail", async (req, res) => {
     if (isRegistered) {
       isPasswordCorrect(req.body, (isCorrect) => {
         if (isCorrect) {
-          //TODO login
-
           db.update(
             { email: req.body.email },
             { $set: { status: "logged-in" } },
@@ -138,13 +136,7 @@ app.post("/serverside/sendMail", async (req, res) => {
 });
 
 app.post("/serverside/getStatus", (req, res) => {
-  db.find(
-    {
-      email: req.body.email,
-    },
-    (user) => {
-      console.log(user, user.status === "logged-in");
-      res.json({ message: user.status });
-    }
-  );
+  db.find({ email: req.body.email }, (err, user) => {
+    res.json({ message: user[0].status });
+  });
 });

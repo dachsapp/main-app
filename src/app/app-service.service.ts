@@ -22,7 +22,7 @@ export class AppServiceService {
     });
   };
 
-  isLoggedIn = (email: BehaviorSubject<string>) => {
+  isLoggedIn = (email: string) => {
     return this.http.post(`/serverside/getStatus`, {
       email: email,
     });
