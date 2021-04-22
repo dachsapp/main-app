@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppServiceService } from '../app-service.service';
 
@@ -7,11 +7,23 @@ import { AppServiceService } from '../app-service.service';
   templateUrl: './sign-up-screen.component.html',
   styleUrls: ['./sign-up-screen.component.scss'],
 })
-export class SignUpScreenComponent {
+export class SignUpScreenComponent implements OnInit {
+  email: string;
+
+  ngOnInit() {
+    this.service.emailObservable.subscribe(
+      (emailObserved) => (this.email = emailObserved)
+    );
+  }
+
   constructor(private router: Router, private service: AppServiceService) {}
 
-  email = '';
+  //TODO this
+
   pass = '';
+
+  isPasswordWrong = false;
+  isPasswordIllegal = false;
 
   allAllowdChars: string[];
 
@@ -89,7 +101,8 @@ export class SignUpScreenComponent {
 
   //? runs when the the focus on the email-input was lost
   emailInputChanged = (enteredEmail: string) => {
-    this.email = enteredEmail;
+    this.service.changeEmail(enteredEmail);
+
     this.cssEmailW.illigal_chars = this.hasIlliglEmailChars(enteredEmail)
       ? 'illigalEmailChars'
       : '';
@@ -271,16 +284,22 @@ export class SignUpScreenComponent {
       message: string;
     }
 
-    this.service.sendMail(this.email, this.pass).subscribe({
-      next: (data: ResponseMessage) => {
+    this.service
+      .sendMail(this.email, this.pass)
+      .toPromise()
+      .then((data: ResponseMessage) => {
+        console.log(data.message);
         if (data.message === 'login-success') {
+          this.isPasswordWrong = false;
           this.router.navigate(['/home']);
-        } else {
-          alert('PASSWORD IS WRONG!!!!!');
         }
-      },
-      error: (err) => console.error(err),
-    });
+        if (data.message === 'login-nosuccess') {
+          this.isPasswordWrong = true;
+        }
+        if (data.message === 'register-pass-illegal') {
+          this.isPasswordIllegal = true;
+        }
+      });
     // this.router.navigate(['/verify-code']);
   };
 }

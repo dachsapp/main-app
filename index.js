@@ -18,9 +18,17 @@ const Datastore = require("nedb");
 const db = new Datastore("users.db");
 db.loadDatabase();
 
-const addUser = (name, password) => {
-  db.insert({ _id: name, password: password });
+const addUser = (userEmail, password) => {
+  db.insert({
+    email: userEmail,
+    password: password,
+    status: "not-logged-in",
+    verifyCode: "none",
+  });
 };
+
+// addUser("alshoufy@dachsberg.at", "myPass1234");
+// addUser("yanni.g.apps@gmail.com", "myPass4321");
 
 const nodemailer = require("nodemailer");
 const getVerifyCode = () => Math.random().toString().slice(12, -1);
@@ -62,7 +70,7 @@ const isEmailRegistered = (userEmail, callback) => {
   //? get all users
   db.find({}, (err, allUsers) => {
     for (let user of allUsers) {
-      if (user._id.toLowerCase() === userEmail.toLowerCase()) {
+      if (user.email.toLowerCase() === userEmail.toLowerCase()) {
         callback(true);
         return;
       }
@@ -74,7 +82,7 @@ const isEmailRegistered = (userEmail, callback) => {
 const isPasswordCorrect = (userData, callback) => {
   db.find({}, (err, allUsers) => {
     for (let user of allUsers) {
-      if (user._id.toLowerCase() === userData.email.toLowerCase()) {
+      if (user.email.toLowerCase() === userData.email.toLowerCase()) {
         callback(user.password === userData.password ? true : false);
         return;
       }
@@ -83,12 +91,35 @@ const isPasswordCorrect = (userData, callback) => {
   });
 };
 
+const isPasswordUseable = (userPassword, callback) => {
+  let isUseable = true;
+  if (userPassword.length < 6) isUseable = false;
+  if (userPassword.length > 32) isUseable = false;
+  for (let letter of userPassword) {
+    if (
+      !"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_-=+{}[]|;:/?.`'".includes(
+        letter
+      )
+    ) {
+      isUseable = false;
+    }
+  }
+  callback(isUseable);
+};
+
 app.post("/serverside/sendMail", async (req, res) => {
   isEmailRegistered(req.body.email, (isRegistered) => {
     if (isRegistered) {
       isPasswordCorrect(req.body, (isCorrect) => {
         if (isCorrect) {
-          //TODO, login, goto lobby
+          //TODO login
+
+          db.update(
+            { email: req.body.email },
+            { $set: { status: "logged-in" } },
+            (err) => console.log(err)
+          );
+
           res.json({ message: "login-success" });
           return;
         }
@@ -96,6 +127,24 @@ app.post("/serverside/sendMail", async (req, res) => {
       });
       return;
     }
-    //TODO send Mail, verify code (code should be assigned to database with the user), register and login, goto lobby
+    isPasswordUseable(req.body.password, (isUseable) => {
+      if (isUseable) {
+        //TODO send Mail, verify code (code should be assigned to database with the user), register and login, goto lobby
+        return;
+      }
+      res.json({ message: "register-pass-illegal" });
+    });
   });
+});
+
+app.post("/serverside/getStatus", (req, res) => {
+  db.find(
+    {
+      email: req.body.email,
+    },
+    (user) => {
+      console.log(user, user.status === "logged-in");
+      res.json({ message: user.status });
+    }
+  );
 });

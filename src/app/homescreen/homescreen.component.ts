@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppServiceService } from '../app-service.service';
 
 @Component({
   selector: 'app-homescreen',
@@ -7,10 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./homescreen.component.scss'],
 })
 export class HomescreenComponent implements OnInit {
-  constructor(private route: Router) {}
+  constructor(private route: Router, private service: AppServiceService) {}
   los = (routingLink: string) => {
     this.route.navigate([routingLink]);
   };
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    // this.service.isLoggedIn();
+  }
 }
