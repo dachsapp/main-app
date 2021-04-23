@@ -10,15 +10,23 @@ import { AppServiceService } from '../app-service.service';
 export class SignUpScreenComponent implements OnInit {
   email: string;
 
+  constructor(private router: Router, private service: AppServiceService) {}
+
   ngOnInit() {
     this.service.emailObservable.subscribe(
       (emailObserved) => (this.email = emailObserved)
     );
+
+    interface ResponseMessage {
+      message: string;
+    }
+    this.service
+      .isLoggedIn(this.email)
+      .toPromise()
+      .then((data: ResponseMessage) => {
+        if (data.message === 'logged-in') this.router.navigate(['/home']);
+      });
   }
-
-  constructor(private router: Router, private service: AppServiceService) {}
-
-  //TODO this
 
   pass = '';
 
@@ -101,7 +109,7 @@ export class SignUpScreenComponent implements OnInit {
 
   //? runs when the the focus on the email-input was lost
   emailInputChanged = (enteredEmail: string) => {
-    this.service.changeEmail(enteredEmail);
+    this.email = enteredEmail;
 
     this.cssEmailW.illigal_chars = this.hasIlliglEmailChars(enteredEmail)
       ? 'illigalEmailChars'
@@ -249,7 +257,7 @@ export class SignUpScreenComponent implements OnInit {
     }
 
     this.passwordFieldValue = this.generateRandom(this.allAllowdChars);
-    this.testPasswordRequirements(this.passwordFieldValue);
+    this.passwordInputChanged(this.passwordFieldValue);
   };
 
   positionOfFurtherGRPOptions = 'top: 5px; left: 10px';
@@ -285,11 +293,11 @@ export class SignUpScreenComponent implements OnInit {
     }
 
     this.service
-      .sendMail(this.email, this.pass)
+      .signUpCheck(this.email, this.pass)
       .toPromise()
       .then((data: ResponseMessage) => {
-        console.log(data.message);
         if (data.message === 'login-success') {
+          this.service.changeEmail(this.email);
           this.isPasswordWrong = false;
           this.router.navigate(['/home']);
         }
@@ -298,6 +306,14 @@ export class SignUpScreenComponent implements OnInit {
         }
         if (data.message === 'register-pass-illegal') {
           this.isPasswordIllegal = true;
+        }
+        if (data.message === 'verify-code-waiting') {
+          this.router.navigate(['verify-code']);
+        }
+        if (data.message === 'email-not-sent') {
+          alert(
+            'Es konnte Ihnen keine Bestätigungsemail geschickt werden... Sind Sie sich sicher, dass sie Ihre Emailadresse richtig eingegeben haben?'
+          );
         }
       });
     // this.router.navigate(['/verify-code']);

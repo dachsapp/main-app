@@ -18,20 +18,30 @@ const Datastore = require("nedb");
 const db = new Datastore("users.db");
 db.loadDatabase();
 
-const addUser = (userEmail, password) => {
-  db.insert({
-    email: userEmail,
-    password: password,
-    status: "not-logged-in",
-    verifyCode: "none",
-  });
+const addUser = (userEmail, password, verifyCode, callback) => {
+  db.insert(
+    {
+      email: userEmail,
+      password: password,
+      status: "logged-in",
+      verifyCode: verifyCode,
+    },
+    callback
+  );
 };
 
-// addUser("alshoufy@dachsberg.at", "myPass1234");
-// addUser("yanni.g.apps@gmail.com", "myPass4321");
-
 const nodemailer = require("nodemailer");
-const getVerifyCode = () => Math.random().toString().slice(12, -1);
+const getVerifyCode = () => {
+  const useableSympoles =
+    "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let verifyCode = "";
+  for (let i = 1; i <= 6; i++) {
+    verifyCode =
+      verifyCode +
+      useableSympoles[Math.floor(Math.random() * useableSympoles.length)];
+  }
+  return verifyCode;
+};
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -42,7 +52,7 @@ const transporter = nodemailer.createTransport({
 });
 
 let verifyCode;
-const sendMail = (userEmail) => {
+const sendMail = (userEmail, callback) => {
   verifyCode = getVerifyCode();
   transporter
     .sendMail({
@@ -60,9 +70,11 @@ const sendMail = (userEmail) => {
     })
     .then((res) => {
       console.log(`Got sended to ${userEmail} succefully`);
+      callback(verifyCode);
     })
     .catch((err) => {
       console.log(`Couldn't send email to ${userEmail}`);
+      callback("none");
     });
 };
 
@@ -107,7 +119,7 @@ const isPasswordUseable = (userPassword, callback) => {
   callback(isUseable);
 };
 
-app.post("/serverside/sendMail", async (req, res) => {
+app.post("/serverside/signup", async (req, res) => {
   isEmailRegistered(req.body.email, (isRegistered) => {
     if (isRegistered) {
       isPasswordCorrect(req.body, (isCorrect) => {
@@ -125,9 +137,18 @@ app.post("/serverside/sendMail", async (req, res) => {
       });
       return;
     }
-    isPasswordUseable(req.body.password, (isUseable) => {
+    isPasswordUseable(req.body.password, async (isUseable) => {
       if (isUseable) {
         //TODO send Mail, verify code (code should be assigned to database with the user), register and login, goto lobby
+        sendMail(req.body.email, (verifyCode) => {
+          addUser(req.body.email, req.body.password, (verifyCode, err) => {
+            if (err) {
+              res.json({ message: "email-not-sent" });
+              return;
+            }
+            res.json({ message: "verify-code-waiting" });
+          });
+        });
         return;
       }
       res.json({ message: "register-pass-illegal" });
@@ -136,7 +157,16 @@ app.post("/serverside/sendMail", async (req, res) => {
 });
 
 app.post("/serverside/getStatus", (req, res) => {
+  if (req.body.email === "") {
+    res.json({ message: "not-logged-in" });
+    return;
+  }
   db.find({ email: req.body.email }, (err, user) => {
+    if (user[0] === undefined) {
+      console.log("Not a registered email");
+      res.json({ message: "not-logged-in" });
+      return;
+    }
     res.json({ message: user[0].status });
   });
 });

@@ -15,19 +15,23 @@ export class HomescreenComponent implements OnInit {
 
   email: string;
 
-  ngOnInit() {
+  checkLoggedIn = () => {
     interface ResponseMessage {
       message: string;
     }
-
-    this.service.emailObservable.subscribe(
-      (emailObserved) => (this.email = emailObserved)
-    );
     this.service
       .isLoggedIn(this.email)
       .toPromise()
       .then((data: ResponseMessage) => {
         if (data.message !== 'logged-in') this.route.navigate(['/signup']);
       });
+  };
+
+  ngOnInit() {
+    this.service.emailObservable.subscribe(
+      (emailObserved) => (this.email = emailObserved)
+    );
+    this.checkLoggedIn();
+    setInterval(this.checkLoggedIn, 30000);
   }
 }

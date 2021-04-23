@@ -15,8 +15,8 @@ export class AppServiceService {
     this.globalEmail.next(newEmail);
   };
 
-  sendMail = (email: string, password: string) => {
-    return this.http.post(`/serverside/sendMail/`, {
+  signUpCheck = (email: string, password: string) => {
+    return this.http.post(`/serverside/signup/`, {
       email: email,
       password: password,
     });

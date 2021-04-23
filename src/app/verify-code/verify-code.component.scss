@@ -1,0 +1,47 @@
+#main-div {
+  position: fixed;
+  left: 10vw;
+  right: 10vw;
+  top: 5vh;
+  bottom: 0;
+
+  width: 80vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  text-align: center;
+  background-color: #262626;
+  color: white;
+}
+
+#info {
+  h1,
+  p {
+    font-family: "Pangolin", cursive;
+    font-size: 1.5rem;
+    margin-bottom: 10%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+input {
+  width: 100%;
+
+  border: none;
+  border-radius: 10px;
+  outline: none;
+
+  background-color: rgb(93, 93, 93);
+  font-size: 8vw;
+  color: white;
+
+  text-align: center;
+  letter-spacing: 1.5ch;
+}
