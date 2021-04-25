@@ -140,11 +140,11 @@ $warning-color: rgb(255, 109, 109);
 
 // email warnings
 .illigalEmailChars::after {
-  content: "Sie haben unerlaubte Zeichen verwentet";
+  content: "Sie haben unerlaubte Zeichen verwendet";
 }
 
 .moreThanOneAt::after {
-  content: "Sie haben mehr als ein '@'-Zeichen verwentet";
+  content: "Sie haben mehr als ein '@'-Zeichen verwendet";
 }
 
 .forgotDOT::after {
