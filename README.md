@@ -1,5 +1,3 @@
-Diese Website/Webapp wurde von Yanni Alshoufi gemacht. (Offizieller Name: Yane Al Shoufi)
-
 ## Genutzte Frameworks/Bibleotheke/Programmiersprachen/...
 
 Frontend: Angular (Nicht AngularJS) mit Typescript und scss
@@ -23,7 +21,7 @@ npm run cr
 
 Sie können nun zu 0.0.0.0:3443 gehen, um die Website/Webapp zu starten
 
-### Dachsapp Team:
+## Dachsapp Team:
 
 Yanni Alshoufi: Full-Stack Programmierung
 Majd Khoshaifi: Icons-Design
