@@ -10,7 +10,7 @@ NodeJS (express, nodemailer, ...)
 
 ## Rechte
 
-Alle verwendeten Bilder und Sounds sind von unserem Team gemacht worden. Alles ist Copyright-Free.
+Alle verwendeten Bilder, Sounds, etc. sind von unserem Team gemacht worden. Alles ist Copyright-Free.
 
 ## Dachsapp Team:
 
