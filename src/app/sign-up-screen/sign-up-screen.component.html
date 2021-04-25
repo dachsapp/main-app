@@ -10,16 +10,7 @@
           placeholder="Email"
         />
       </div>
-      <div
-        id="password-field"
-        [class]="
-          passClassList +
-          ' ' +
-          (isPasswordWrong === true ? 'passwordWrong' : '') +
-          ' ' +
-          (isPasswordIllegal === true ? 'passwordIllegal' : '')
-        "
-      >
+      <div id="password-field" [class]="passClassList">
         <input
           #passwordInput
           (input)="passwordInputChanged(passwordInput.value)"

@@ -182,25 +182,13 @@ $warning-color: rgb(255, 109, 109);
 
 //
 .passwordWrong {
-  input {
-    background-color: rgb(199, 40, 40) !important;
-    color: white !important;
-  }
   &::after {
     content: "Das von Ihnen eingegebene Passwort ist falsch!";
-    color: $warning-color;
-    font-family: Arial, Helvetica, sans-serif;
-    position: absolute;
-    top: 110%;
   }
 }
 .passwordIllegal {
   &::after {
     content: "Seien Sie bitte legal!";
-    color: $warning-color;
-    font-family: Arial, Helvetica, sans-serif;
-    position: absolute;
-    top: 110%;
   }
 }
 

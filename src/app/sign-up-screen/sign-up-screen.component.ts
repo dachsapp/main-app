@@ -165,7 +165,9 @@ export class SignUpScreenComponent implements OnInit {
   cssPassW = {
     too_short: '',
     too_long: '',
-    illigal_char: '',
+    illegal_char: '',
+    wrong: '',
+    illegal: '',
     warning: '',
   };
 
@@ -177,8 +179,19 @@ export class SignUpScreenComponent implements OnInit {
     }
   };
 
+  handlePassWornings = () => {
+    this.cssPassW.warning = !this.equalValues(
+      Object.values(this.cssPassW).filter((value) => value !== 'warning')
+    )
+      ? 'warning'
+      : '';
+  };
+
   //? tests passwordd
   testPasswordRequirements = (passwordValue: string) => {
+    this.cssPassW.wrong = '';
+    this.cssPassW.illegal = '';
+
     this.cssPassW.too_short = passwordValue.length < 6 ? 'tooShort' : '';
     this.cssPassW.too_long = passwordValue.length > 32 ? 'tooLong' : '';
     for (let letter of passwordValue) {
@@ -187,18 +200,14 @@ export class SignUpScreenComponent implements OnInit {
           letter
         )
       ) {
-        this.cssPassW.illigal_char = 'illigalChar';
+        this.cssPassW.illegal_char = 'illigalChar';
         break;
       } else {
-        this.cssPassW.illigal_char = '';
+        this.cssPassW.illegal_char = '';
       }
     }
 
-    this.cssPassW.warning = !this.equalValues(
-      Object.values(this.cssPassW).filter((value) => value !== 'warning')
-    )
-      ? 'warning'
-      : '';
+    this.handlePassWornings();
 
     this.isPassInputEmpty = false;
     if (passwordValue == '') {
@@ -288,6 +297,7 @@ export class SignUpScreenComponent implements OnInit {
 
   // handle registration
   handleRegistration = () => {
+    this.buttonDisabled = 'disabled';
     interface ResponseMessage {
       message: string;
     }
@@ -302,10 +312,14 @@ export class SignUpScreenComponent implements OnInit {
           this.router.navigate(['/home']);
         }
         if (data.message === 'login-nosuccess') {
-          this.isPasswordWrong = true;
+          this.cssPassW.wrong = 'passwordWrong';
+          this.handlePassWornings();
+          this.generatePassClassList(Object.values(this.cssPassW));
         }
         if (data.message === 'register-pass-illegal') {
-          this.isPasswordIllegal = true;
+          this.cssPassW.illegal = 'passwordIllegal';
+          this.handlePassWornings();
+          this.generatePassClassList(Object.values(this.cssPassW));
         }
         if (data.message === 'verify-code-waiting') {
           this.service.changeEmail(this.email);
@@ -321,7 +335,7 @@ export class SignUpScreenComponent implements OnInit {
             'Der User konnte nicht gespeichert werden... Wahrscheinlich ist es ein Bug'
           );
         }
+        this.buttonDisabled = '';
       });
-    // this.router.navigate(['/verify-code']);
   };
 }
