@@ -14,7 +14,7 @@ Alle verwendeten Bilder, Sounds, etc. sind von unserem Team gemacht worden. Alle
 
 ## Dachsapp Team:
 
-Yanni Alshoufi: Full-Stack Programmierung
-Majd Khoshaifi: Icons-Design
-Daniel: App-Tests auf IOS und MacOS
+Yanni Alshoufi: Full-Stack Programmierung  
+Majd Khoshaifi: Icons-Design  
+Daniel: App-Tests auf IOS und MacOS  
 Lorenz: App-Design Ideen und App-Tests auf Android
