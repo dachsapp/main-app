@@ -2,14 +2,15 @@
   <div id="info">
     <h1>Bitte bestätigen Sie ihre Email Adresse!</h1>
     <p>
-      Sie haben eine Email mit einen sechstelligen Bestätigungscode gekriegt.
-      Schreiben Sie diesen hier:
+      Sie haben eine Email mit einem sechstelligen Bestätigungscode gekriegt.
+      Schreiben Sie diesen hier und drücken Sie auf Bestätigen, befor drei
+      Minuten vergangen sind:
     </p>
   </div>
 
-  <input type="text" maxlength="6" />
+  <input type="text" maxlength="6" #verifyCodeInput />
 
-  <div class="button-div">
-    <a href="#" class="button-anchor">Bestätigen!</a>
+  <div class="button-div" (click)="checkEnteredCode(verifyCodeInput.value)">
+    <a class="button-anchor">Bestätigen!</a>
   </div>
 </div>

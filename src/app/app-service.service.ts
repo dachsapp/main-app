@@ -27,4 +27,19 @@ export class AppServiceService {
       email: email,
     });
   };
+
+  checkVerifyCode = (codeEntered: string, callback: Function) => {
+    this.emailObservable.subscribe((email: string) => {
+      interface ResponseMessage {
+        message: string;
+      }
+      this.http
+        .post(`/serverside/check-verify-code`, {
+          email: email,
+          code: codeEntered,
+        })
+        .toPromise()
+        .then((data: ResponseMessage) => callback(data));
+    });
+  };
 }

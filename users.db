@@ -1,4 +1,3 @@
-{"email":"alshoufy@dachsberg.at","password":"myPass1234","status":"logged-in","verifyCode":"none","_id":"VVKMSFGIdPYdpzpX"}
-{"email":"alshoufy@dachsberg.at","password":"myPass1234","status":"logged-in","verifyCode":"none","_id":"VVKMSFGIdPYdpzpX"}
-{"email":"yanni.g.apps@gmail.com","password":"yanniyanni","status":"logged-in","_id":"vKOnjkTpCddC7Vru"}
-{"email":"alshoufy@dachsberg.at","password":"myPass1234","status":"logged-in","verifyCode":"none","_id":"VVKMSFGIdPYdpzpX"}
+{"email":"alshoufy@dachsberg.at","password":"myPass1234","status":"logged-in","verifyCode":"none","_id":"VVKMSFGIdPYdpzpX","timeout":"none"}
+{"email":"yanni.g.apps@gmail.com","password":"762525","status":"not-logged-in","verifyCode":"8w5PKf","timeout":"verify","_id":"CGNvCj8dwu7buFg6"}
+{"email":"yanni.g.apps@gmail.com","password":"762525","status":"logged-in","verifyCode":"none","timeout":"none","_id":"CGNvCj8dwu7buFg6"}

@@ -308,11 +308,17 @@ export class SignUpScreenComponent implements OnInit {
           this.isPasswordIllegal = true;
         }
         if (data.message === 'verify-code-waiting') {
+          this.service.changeEmail(this.email);
           this.router.navigate(['verify-code']);
         }
         if (data.message === 'email-not-sent') {
           alert(
             'Es konnte Ihnen keine Bestätigungsemail geschickt werden... Sind Sie sich sicher, dass sie Ihre Emailadresse richtig eingegeben haben?'
+          );
+        }
+        if (data.message === 'user-not-added') {
+          alert(
+            'Der User konnte nicht gespeichert werden... Wahrscheinlich ist es ein Bug'
           );
         }
       });

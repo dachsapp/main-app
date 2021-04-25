@@ -23,8 +23,9 @@ const addUser = (userEmail, password, verifyCode, callback) => {
     {
       email: userEmail,
       password: password,
-      status: "logged-in",
+      status: "not-logged-in",
       verifyCode: verifyCode,
+      timeout: "verify",
     },
     callback
   );
@@ -69,12 +70,12 @@ const sendMail = (userEmail, callback) => {
 	  </div>`,
     })
     .then((res) => {
-      console.log(`Got sended to ${userEmail} succefully`);
+      console.log(`Got sended to ${userEmail} successfully`);
       callback(verifyCode);
     })
     .catch((err) => {
       console.log(`Couldn't send email to ${userEmail}`);
-      callback("none");
+      callback("error: " + err);
     });
 };
 
@@ -119,6 +120,28 @@ const isPasswordUseable = (userPassword, callback) => {
   callback(isUseable);
 };
 
+const handleVerifyTimeout = (userEmail) => {
+  db.find({ email: userEmail }, (err, user) => {
+    if (user[0] === undefined || err) {
+      console.log("Wait, whaaaat?!");
+      return;
+    }
+    setTimeout(() => {
+      db.find({ email: userEmail }, (err, newUser) => {
+        if (newUser[0] === undefined) return;
+        console.log(newUser[0].timeout);
+        if (newUser[0].timeout !== "none") {
+          db.update(
+            { email: userEmail },
+            { $set: { timeout: "no-verify" } },
+            (err) => console.error(err)
+          );
+        }
+      });
+    }, 1 * 60000);
+  });
+};
+
 app.post("/serverside/signup", async (req, res) => {
   isEmailRegistered(req.body.email, (isRegistered) => {
     if (isRegistered) {
@@ -127,7 +150,7 @@ app.post("/serverside/signup", async (req, res) => {
           db.update(
             { email: req.body.email },
             { $set: { status: "logged-in" } },
-            (err) => console.log(err)
+            (err) => console.error(err)
           );
 
           res.json({ message: "login-success" });
@@ -139,11 +162,18 @@ app.post("/serverside/signup", async (req, res) => {
     }
     isPasswordUseable(req.body.password, async (isUseable) => {
       if (isUseable) {
-        //TODO send Mail, verify code (code should be assigned to database with the user), register and login, goto lobby
+        //TODO register and login, goto lobby
         sendMail(req.body.email, (verifyCode) => {
-          addUser(req.body.email, req.body.password, (verifyCode, err) => {
+          if (verifyCode.includes("error: ")) {
+            res.json({ message: "email-not-sent" });
+            return;
+          }
+
+          addUser(req.body.email, req.body.password, verifyCode, (err) => {
+            handleVerifyTimeout(req.body.email);
             if (err) {
-              res.json({ message: "email-not-sent" });
+              console.error(err);
+              res.json({ message: "user-not-added" });
               return;
             }
             res.json({ message: "verify-code-waiting" });
@@ -168,5 +198,36 @@ app.post("/serverside/getStatus", (req, res) => {
       return;
     }
     res.json({ message: user[0].status });
+  });
+});
+
+app.post("/serverside/check-verify-code", (req, res) => {
+  db.find({ email: req.body.email }, (err, user) => {
+    if (user[0] === undefined) {
+      console.log("Error: User not found!");
+      res.json({ message: "user-not-found" });
+      return;
+    }
+    if (user[0].timeout === "no-verify") {
+      res.json({ message: "timed-out-verify" });
+      db.remove({ email: req.body.email }, {}, (err) => console.error(err));
+      return;
+    }
+    if (user[0].verifyCode === req.body.code) {
+      db.update(
+        { email: req.body.email },
+        { $set: { timeout: "none", status: "logged-in", verifyCode: "none" } },
+        (err) => {
+          if (err) {
+            console.error(err);
+          }
+          res.json({ message: "code-correct" });
+        }
+      );
+    } else {
+      res.json({
+        message: "code-not-correct",
+      });
+    }
   });
 });
