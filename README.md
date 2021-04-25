@@ -1,7 +1,10 @@
 ## Genutzte Frameworks/Bibleotheke/Programmiersprachen/...
 
-Frontend: Angular (Nicht AngularJS) mit Typescript und scss  
-Backend: NodeJS (express, nodemailer, ...)
+####Frontend:
+Angular (Nicht AngularJS) mit Typescript und scss
+
+####Backend:
+NodeJS (express, nodemailer, ...)
 
 ## Rechte
 
