@@ -1,27 +1,31 @@
-# MainApp
+Diese Website/Webapp wurde von Yanni Alshoufi gemacht. (Offizieller Name: Yane Al Shoufi)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+## Genutzte Frameworks/Bibleotheke/Programmiersprachen/...
 
-## Development server
+Frontend: Angular (Nicht AngularJS) mit Typescript und scss
+Backend NodeJS (express, nodemailer, ...)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Rechte
 
-## Code scaffolding
+Alle verwendeten Bilder und Sounds sind von unserem Team gemacht worden. Alles ist Copyright-Free.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Ausführung
 
-## Build
+Folgende Commands können verwendet werden, um die App auf dem eigenen Gerät installiert zu werden.
+(Voraussichtlich NodeJS und Git sind installiert)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+git clone https://github.com/dachsapp/main-app.git
+cd main-app
+sudo npm i
+npm run cr
+```
 
-## Running unit tests
+Sie können nun zu 0.0.0.0:3443 gehen, um die Website/Webapp zu starten
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Dachsapp Team:
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Yanni Alshoufi: Full-Stack Programmierung
+Majd Khoshaifi: Icons-Design
+Daniel: App-Tests auf IOS und MacOS
+Lorenz: App-Design Ideen und App-Tests auf Android
