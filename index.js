@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 
@@ -47,8 +49,8 @@ const getVerifyCode = () => {
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "web.dachs.app@gmail.com",
-    pass: "wt}-S4=+cA6a/H#i",
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD,
   },
 });
 
@@ -57,7 +59,7 @@ const sendMail = (userEmail, callback) => {
   verifyCode = getVerifyCode();
   transporter
     .sendMail({
-      from: "web.dachs.app@gmail.com",
+      from: process.env.EMAIL,
       to: userEmail,
       subject: "Dachsapp Bestätigungscode",
       html: `
