@@ -1,7 +1,7 @@
 ## Genutzte Frameworks/Bibleotheke/Programmiersprachen/...
 
-Frontend: Angular (Nicht AngularJS) mit Typescript und scss
-Backend NodeJS (express, nodemailer, ...)
+Frontend: Angular (Nicht AngularJS) mit Typescript und scss  
+Backend: NodeJS (express, nodemailer, ...)
 
 ## Rechte
 
@@ -9,7 +9,7 @@ Alle verwendeten Bilder und Sounds sind von unserem Team gemacht worden. Alles i
 
 ## Ausführung
 
-Folgende Commands können verwendet werden, um die App auf dem eigenen Gerät installiert zu werden.
+Folgende Commands können verwendet werden, um die App auf dem eigenen Gerät zu installiert.
 (Voraussichtlich NodeJS und Git sind installiert)
 
 ```
