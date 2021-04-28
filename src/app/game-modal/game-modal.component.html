@@ -1,18 +1,41 @@
 <div id="information" [class]="styleOfPlayer">
-  <img
-    (click)="clicked()"
-    id="player"
-    src="assets/main-player.png"
-    alt="main-player"
-  />
+  <img (click)="clicked()" id="player" [src]="playerIcon" alt="main-player" />
+
   <div id="info">
-    <div id="shop">
+    <div id="collected" class="collection">
       <h1>gesammelte Gegenstände</h1>
 
-      <div id="shopItems">
-        <div class="shopItem" *ngFor="let shopItem of itemsArray">
+      <div class="items-div">
+        <div class="item" *ngFor="let collectedItem of collectedItems">
+          <img
+            *ngIf="collectedItem.isCollected === true"
+            [src]="collectedItem.img"
+            alt="collectedItem"
+          />
+          <p *ngIf="collectedItem.isCollected === true">
+            {{ collectedItem.text }}
+          </p>
+          <button
+            *ngIf="collectedItem.isCollected === true"
+            (click)="collectedItem.equip()"
+          >
+            anziehen
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="shop" class="collection">
+      <h1>Shop</h1>
+
+      <div class="items-div">
+        <div class="item" *ngFor="let shopItem of shopItems">
           <img [src]="shopItem.img" alt="shopitem" />
           <p>{{ shopItem.text }}</p>
+          <button
+            (click)="shopItem.isBought ? shopItem.equip() : shopItem.buy()"
+          >
+            {{ shopItem.isBought ? "anziehen" : shopItem.cost }}
+          </button>
         </div>
       </div>
     </div>

@@ -4,15 +4,17 @@ const express = require("express");
 const app = express();
 
 const port = 3443;
-const hostname = "0.0.0.0";
+
+// const hostname = "0.0.0.0";
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 app.use("/", express.static("public"));
 
-app.listen(port, hostname, () => {
-  console.log(`Listening on http://${hostname}:${port}`);
+app.listen(port, () => {
+  //! readd hostname
+  console.log(`Listening on http://{hostname}:${port}`);
 });
 
 const Datastore = require("nedb");

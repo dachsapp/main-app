@@ -1,15 +1,22 @@
 #map {
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
 }
 
 * {
-    color: black;
+  color: black;
 }
 
-.leaflet-marker-pane>* {
-    -webkit-transition: .3s ease-in-out;
-    transition: .3s ease-in-out;
+.leaflet-marker-pane > * {
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+#main-player-marker-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

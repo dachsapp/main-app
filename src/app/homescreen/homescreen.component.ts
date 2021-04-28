@@ -19,7 +19,6 @@ export class HomescreenComponent implements OnInit {
     interface ResponseMessage {
       message: string;
     }
-    console.log(this.email);
 
     this.service
       .isLoggedIn(this.email)

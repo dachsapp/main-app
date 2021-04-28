@@ -1,17 +1,17 @@
 #coins-div {
-    position: absolute;
-    top: 2vw;
-    left: 2vw;
-    z-index: 100;
-    display: flex;
-    align-items: center;
+  position: fixed;
+  top: 2vw;
+  left: 2vw;
+  z-index: 100;
+  display: flex;
+  align-items: center;
 
-    img {
-        height: 12vh;
-    }
+  img {
+    height: 12vh;
+  }
 
-    h1 {
-        font-size: 5vh;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+  h1 {
+    font-size: 5vh;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 }
