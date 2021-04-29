@@ -1,6 +1,6 @@
 #info {
   width: 100%;
-  min-height: 5vh;
+  height: 100%;
   overflow-y: auto;
 
   position: fixed;
@@ -13,23 +13,24 @@
 }
 
 #information {
-  width: 100vw;
-  height: 5vh;
-  overflow-y: auto;
-
-  position: fixed;
-  bottom: 0;
-  z-index: 1;
   display: flex;
   justify-content: center;
 
+  #info {
+    width: 100vw;
+    min-height: 5vh;
+    overflow-y: auto;
+
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+  }
+
   #player {
-    z-index: 10;
     position: absolute;
-    top: 0;
     width: 10vh;
-    height: 10vh;
     user-select: none;
+    z-index: 2;
 
     &:hover {
       cursor: pointer;
@@ -98,21 +99,30 @@
 }
 
 .hidden {
-  height: 20vh;
-
   #info {
-    height: 5vh;
+    height: 0vh;
     visibility: hidden;
     opacity: 0;
+  }
+  #player {
+    bottom: 5vh;
   }
 }
 
 .shown {
-  height: 90vh;
-
   #info {
     height: 80vh;
     visibility: visible;
     opacity: 1;
   }
+  #player {
+    bottom: 75vh;
+  }
+}
+
+#main-player-marker-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

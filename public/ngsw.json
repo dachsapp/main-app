@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1619584047819,
+  "timestamp": 1619654966790,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,11 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.2e670afd30c7bdc9faff.js",
+        "/main.cdc0a382370b1870144d.js",
         "/manifest.webmanifest",
         "/polyfills.d0188a2d99c4a175b485.js",
         "/runtime.0e49e2b53282f40c8925.js",
-        "/styles.c96c992c8d9eccf2f689.css"
+        "/styles.c4009f37e65d77f853ff.css"
       ],
       "patterns": []
     },
@@ -50,8 +50,8 @@
         "/assets/shop/common/dachs/brille/gelb.png",
         "/assets/shop/common/dachs/brille/gruen.png",
         "/assets/shop/common/dachs/brille/rot.png",
-        "/assets/shop/common/dachs/cap.png",
-        "/assets/shop/common/dachs/faz.png",
+        "/assets/shop/common/dachs/fez.png",
+        "/assets/shop/common/dachs/kappe.png",
         "/assets/shop/common/dachs/kopfhoerer.png",
         "/assets/shop/common/dachs/muetze.png",
         "/assets/shop/common/dachs/nase.png",
@@ -63,8 +63,8 @@
         "/assets/shop/common/items/brille/gelb.png",
         "/assets/shop/common/items/brille/gruen.png",
         "/assets/shop/common/items/brille/rot.png",
-        "/assets/shop/common/items/cappe.png",
         "/assets/shop/common/items/fez.png",
+        "/assets/shop/common/items/kappe.png",
         "/assets/shop/common/items/kopfhoerer.png",
         "/assets/shop/common/items/muetze.png",
         "/assets/shop/common/items/nase.png",
@@ -126,8 +126,8 @@
     "/assets/shop/common/dachs/brille/gelb.png": "6d74bcc12f8b821d3fb7155172eaa468783e8eba",
     "/assets/shop/common/dachs/brille/gruen.png": "651171e32e3e54c0ac056a12f2adce985c712cda",
     "/assets/shop/common/dachs/brille/rot.png": "4546f49ef2b3ad9a3b9561a6af21b1f4d6c87c07",
-    "/assets/shop/common/dachs/cap.png": "6f3dace3a212d43efdc2aa3efc7accf8250eee71",
-    "/assets/shop/common/dachs/faz.png": "da4e01a948d485156c9c849f1de1c22f2334cb60",
+    "/assets/shop/common/dachs/fez.png": "da4e01a948d485156c9c849f1de1c22f2334cb60",
+    "/assets/shop/common/dachs/kappe.png": "6f3dace3a212d43efdc2aa3efc7accf8250eee71",
     "/assets/shop/common/dachs/kopfhoerer.png": "fb2aae6a7a39b22c3e95c4d4cdbc82879e777836",
     "/assets/shop/common/dachs/muetze.png": "215e9a925b78508805ee6ec8e7d12447503d449f",
     "/assets/shop/common/dachs/nase.png": "40db3da9292e21a4bbdcb078bf114fd0184f01c4",
@@ -139,8 +139,8 @@
     "/assets/shop/common/items/brille/gelb.png": "fda47dc901f7a28b6d089bfd65d2a934257e796e",
     "/assets/shop/common/items/brille/gruen.png": "3f6ae5d945b84d303876447edbd10af377a5c975",
     "/assets/shop/common/items/brille/rot.png": "2d7e4ff78159d88cf65a4399a02dc4a40be39e28",
-    "/assets/shop/common/items/cappe.png": "0e32d3c083d642171b93495e14225a512cbf8175",
     "/assets/shop/common/items/fez.png": "33ce5e82680cb8d8a284dbf4877535c286982802",
+    "/assets/shop/common/items/kappe.png": "0e32d3c083d642171b93495e14225a512cbf8175",
     "/assets/shop/common/items/kopfhoerer.png": "fc56012c9bfe18e52036efdb37e2a0972ba37621",
     "/assets/shop/common/items/muetze.png": "28cdc69a66ac3ecab4d66490af185945e8d40664",
     "/assets/shop/common/items/nase.png": "516fb53c5e7011241ca6a5b8603a4595c435303c",
@@ -173,15 +173,15 @@
     "/assets/willkommen.png": "eb6b324f37fdbcef74d21c4a1f8e4ce9b6ecd0c8",
     "/assets/willkommen.svg": "ffda80358ada2ec44d040c10035b624837eeccf8",
     "/favicon.ico": "bfd062c3744da8f746a0af557611d1d180352f4e",
-    "/index.html": "a5088a29dc88c8376c71486aa5580ca8ccd5a3e0",
+    "/index.html": "86282d31f82413a5a24df4a63a79d95362ba001d",
     "/layers-2x.8f2c4d11474275fbc161.png": "152a162333e46d24f9d89f566312fc0c64011dee",
     "/layers.416d91365b44e4b4f477.png": "c9e7528e491a39232ba24a2706c6c739d6fb0f06",
-    "/main.2e670afd30c7bdc9faff.js": "84e75bef0009539eb53cd2d045a5f9360cd20c4e",
+    "/main.cdc0a382370b1870144d.js": "762a05142d7ff7fe3395e6f02d6434fee5234dd2",
     "/manifest.webmanifest": "91a86e5173cedf9bf8cde5723cd2d8c2f833c254",
     "/marker-icon.2b3e1faf89f94a483539.png": "60a90bcbb2b42b7ddb4556db94eb7c1084b0e5da",
     "/polyfills.d0188a2d99c4a175b485.js": "7be1b23943a8b1d1c4f91622b62b3673bc452a8b",
     "/runtime.0e49e2b53282f40c8925.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/styles.c96c992c8d9eccf2f689.css": "41f48cea6d2956b6d43045572d1e595bc7c069d0"
+    "/styles.c4009f37e65d77f853ff.css": "690ab66c360ab79116ea261c103a434da6f1358d"
   },
   "navigationUrls": [
     {

@@ -1,6 +1,6 @@
 {
     "/serverside": {
-        "target": "http://localhost:3443/serverside",
+        "target": "http://localhost:4334/serverside",
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {

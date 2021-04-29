@@ -1,27 +1,28 @@
 require("dotenv").config();
 
+// EXPRESS
+
 const express = require("express");
 const app = express();
 
-const port = 3443;
-
-// const hostname = "0.0.0.0";
+const port = 4334;
+const hostname = "0.0.0.0";
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 app.use("/", express.static("public"));
-
-app.listen(port, () => {
-  //! readd hostname
-  console.log(`Listening on http://{hostname}:${port}`);
+app.listen(port, hostname, () => {
+  console.log(`Listening on http://${hostname}:${port}`);
 });
 
-const Datastore = require("nedb");
+// NEDB SETUP
 
+const Datastore = require("nedb");
 const db = new Datastore("users.db");
 db.loadDatabase();
 
+//? adds user to database
 const addUser = (userEmail, password, verifyCode, callback) => {
   db.insert(
     {
@@ -30,10 +31,15 @@ const addUser = (userEmail, password, verifyCode, callback) => {
       status: "not-logged-in",
       verifyCode: verifyCode,
       timeout: "verify",
+      coins: 500,
+      itemsBought: [],
+      itemsCollected: [],
     },
     callback
   );
 };
+
+// NODEMAILER
 
 const nodemailer = require("nodemailer");
 const getVerifyCode = () => {
@@ -55,6 +61,8 @@ const transporter = nodemailer.createTransport({
     pass: process.env.PASSWORD,
   },
 });
+
+// SENDMAIL
 
 let verifyCode;
 const sendMail = (userEmail, callback) => {
@@ -82,6 +90,8 @@ const sendMail = (userEmail, callback) => {
       callback("error: " + err);
     });
 };
+
+// IS FUNCTIONS
 
 const isEmailRegistered = (userEmail, callback) => {
   //? get all users
@@ -124,6 +134,7 @@ const isPasswordUseable = (userPassword, callback) => {
   callback(isUseable);
 };
 
+//? remove user if not verified before 3 minutes have passed
 const handleVerifyTimeout = (userEmail) => {
   db.find({ email: userEmail }, (err, user) => {
     if (user[0] === undefined || err) {
@@ -146,6 +157,9 @@ const handleVerifyTimeout = (userEmail) => {
   });
 };
 
+// POST REQUESTS
+
+//? handles signup request, so when login/register is clicked
 app.post("/serverside/signup", async (req, res) => {
   isEmailRegistered(req.body.email, (isRegistered) => {
     if (isRegistered) {
@@ -190,6 +204,7 @@ app.post("/serverside/signup", async (req, res) => {
   });
 });
 
+//? returnes 'logged-in' or 'not-logged-in'
 app.post("/serverside/getStatus", (req, res) => {
   if (req.body.email === "") {
     res.json({ message: "not-logged-in" });
@@ -232,6 +247,90 @@ app.post("/serverside/check-verify-code", (req, res) => {
       res.json({
         message: "code-not-correct",
       });
+    }
+  });
+});
+
+// GET-USERS-ITEMS/COINS
+
+app.post("/serverside/get-user-coins", (req, res) => {
+  db.find({ email: req.body.email }, (err, user) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    if (user[0] !== undefined) {
+      res.json({ message: user[0].coins });
+    }
+  });
+});
+app.post("/serverside/get-collected-items", (req, res) => {
+  db.find({ email: req.body.email }, (err, user) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    if (user[0] !== undefined) {
+      res.json({ message: user[0].itemsCollected });
+    }
+  });
+});
+app.post("/serverside/get-bought-items", (req, res) => {
+  db.find({ email: req.body.email }, (err, user) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    if (user[0] !== undefined) {
+      res.json({ message: user[0].itemsBought });
+    }
+  });
+});
+
+// SETS/ADDES_TO-USERS-ITEMS/COINS
+
+app.post("/serverside/set-user-coins", (req, res) => {
+  db.find({ email: req.body.email }, (err, user) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    db.update(
+      { email: req.body.email },
+      { $set: { coins: req.body.coins } },
+      (err) => console.log(err ? new Error(err) : " ")
+    );
+  });
+});
+app.post("/serverside/addto-collected-items", (req, res) => {
+  db.find({ email: req.body.email }, (err, user) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    if (user[0] !== undefined) {
+      const oldItems = user[0].itemsCollected;
+      db.update(
+        { email: req.body.email },
+        { $set: { itemsCollected: [...oldItems, req.body.item] } },
+        (err) => console.log(err ? new Error(err) : " ")
+      );
+    }
+  });
+});
+app.post("/serverside/addto-bought-items", (req, res) => {
+  db.find({ email: req.body.email }, (err, user) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    if (user[0] !== undefined) {
+      const oldItems = user[0].itemsBought;
+      db.update(
+        { email: req.body.email },
+        { $set: { itemsBought: [...oldItems, req.body.item] } },
+        (err) => console.log(err ? new Error(err) : " ")
+      );
     }
   });
 });

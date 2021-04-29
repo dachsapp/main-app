@@ -121,6 +121,12 @@ export class MapscreenComponent {
   }
   email: string;
 
+  itemsCoords = [
+    [48.234726811917305, 13.832334115112472],
+    [48.23403719235688, 13.833283617069176],
+    [48.234172973108805, 13.831513359183795],
+  ];
+
   checkLoggedIn = () => {
     interface ResponseMessage {
       message: string;
@@ -144,7 +150,7 @@ export class MapscreenComponent {
 
   //? will hold score
   //TODO update it alongside the server and get info from server at first
-  public coinCount = 0;
+  public coinCount: number;
 
   // main map
   public map: L.Map;
@@ -193,7 +199,7 @@ export class MapscreenComponent {
           this.player.position.longitude - 0.0001 < this.coords[coord][1]
         ) {
           //? increase counter
-          this.coinCount++;
+          this.service.changeCoinsCount(this.coinCount + 1);
 
           //? remove coord and poin of taken coin
           this.coords = this.coords.filter(
@@ -214,6 +220,7 @@ export class MapscreenComponent {
       latitude: pos.coords.latitude,
       longitude: pos.coords.longitude,
     });
+
     this.oldPos = Array.from([
       this.player.position.latitude,
       this.player.position.longitude,
@@ -312,6 +319,16 @@ export class MapscreenComponent {
 
   //? FIRST THING THAT RUNS
   onMapReady = (map: L.Map) => {
+    this.service.coinsCountObservable.subscribe((observedCoinsCount) => {
+      this.coinCount = observedCoinsCount;
+    });
+
+    //? get coinsCount from server
+    this.service.getUserCoins((coinsCountFromServer: number) => {
+      console.log(coinsCountFromServer);
+      this.service.changeCoinsCount(coinsCountFromServer);
+    });
+
     this.map = map;
 
     this.player = new Player({
@@ -334,6 +351,24 @@ export class MapscreenComponent {
       map.scrollWheelZoom.disable(); //? noscrollwheelzoom
       map.dragging.disable(); //? nodragging of markers (coins/items/...)
     }, 1);
+
+    let itemPicsArray = [
+      'assets/shop/common/items/kopfhoerer.png',
+      'assets/shop/common/items/brille/blau.png',
+      'assets/shop/common/items/sonnenbrille.png',
+    ];
+
+    for (let coord in this.itemsCoords) {
+      L.marker(
+        { lat: this.itemsCoords[coord][0], lng: this.itemsCoords[coord][1] },
+        {
+          title: '',
+          interactive: false,
+          draggable: false,
+          icon: L.icon({ iconUrl: itemPicsArray[coord], iconSize: [50, 50] }),
+        }
+      ).addTo(this.map);
+    }
 
     this.onInit();
   };
